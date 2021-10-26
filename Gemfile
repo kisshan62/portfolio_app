@@ -59,3 +59,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
 end
+
+# Devise
+gem 'devise'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'

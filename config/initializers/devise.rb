@@ -24,8 +24,8 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
+  # config.mailer_sender = ENV['MAILER_USER_NAME']
+  config.mailer_sender = ENV['MAILER_USER_NAME']
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
@@ -309,11 +309,11 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  # config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
-  config.omniauth :twitter, 'XQrOPgFDGrJifwAefhGLz05WR', 'EKVgwhM8DPHStvvRtVEaZYxIwyKxFOI5RfZjCuCfyuNU7ydL5F'
-  # , scope: 'email', oauth_callback: "#{ENV['HOST']}/users/auth/twitter/callback"
-  # config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
-  config.omniauth :google_oauth2, '199178294487-674op820c03t72d6g2gkb47gplbka35a.apps.googleusercontent.com', 'Cz6uY4hQ5d-lknDzkY3VMupj'
-  # , scope: 'email', redirect_uri: "#{ENV['HOST']}/users/auth/google_oauth2/callback"
-  # OmniAuth.config.logger = Rails.logger if Rails.env.development?
+  # config.omniauth :twitter, 'XQrOPgFDGrJifwAefhGLz05WR', 'EKVgwhM8DPHStvvRtVEaZYxIwyKxFOI5RfZjCuCfyuNU7ydL5F'
+  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
+
+  # config.omniauth :google_oauth2, '199178294487-674op820c03t72d6g2gkb47gplbka35a.apps.googleusercontent.com', 'Cz6uY4hQ5d-lknDzkY3VMupj'
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  
+  OmniAuth.config.logger = Rails.logger if Rails.env.development?
 end

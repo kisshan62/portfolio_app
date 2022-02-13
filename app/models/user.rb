@@ -30,4 +30,9 @@ class User < ApplicationRecord
       super
     end
   end
+
+  def is_confirmation_period_expired?
+    # メールアドレス確認メール有効期限チェック(期限はconfig/initializers/devise.rbのconfirm_withinで設定)
+    self.confirmation_period_expired?
+  end
 end

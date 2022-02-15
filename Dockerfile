@@ -21,3 +21,6 @@ ADD . $APP_ROOT
 
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets
+
+# git設定
+RUN git config --global alias.lol "log --graph --decorate --pretty=oneline --all --abbrev-commit"

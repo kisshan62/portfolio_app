@@ -1,3 +1,19 @@
 <h1>Pages#index</h1>
 <p>Find me in app/views/pages/index.html.erb</p>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+
+<p>
+<%= form_with model: @goal do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

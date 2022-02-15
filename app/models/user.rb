@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :goal
+
   # デフォルトの設定に、:omniauthable以下を追加
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

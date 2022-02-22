@@ -1,32 +1,48 @@
 class GoalsController < ApplicationController
-  def index
-    @goals = @user.goals.all
-  end
 
   def new
     @goal = Goal.new
   end
 
   def create
-    @goal = Goal.create
+    @goal = current_user.goal.build(goal_params)
     if @goal.save
-      #saveが完了したら、一覧ページへリダイレクト
+      flash[:notice] = "Goal created!"
       redirect_to root_path
     else
-      #saveを失敗すると新規作成ページへ
-      render new_user_goal_path
+      flash.now[:alert] = "Goal failed create!"
+      render 'pages/index'
     end
   end
 
-  def edit
+  def show
+    @goal = Goal.find(params[:id])
   end
 
-  def show
+  def edit
+    @goal = Goal.find(params[:id])
   end
   
   def update
+    @goal = Goal.find(params[:id])
+
+    if @goal.update(goal_params)
+      redirect_to goal_path(@goal.id)
+    else
+      render :edit
+    end
   end
-  
+
   def destroy
+    @goal = Goal.find(params[:id])
+    @goal.destroy
+
+    redirect_to root_path
   end
+
+  private
+
+    def goal_params
+      params.require(:goal).permit(:title, :description)
+    end
 end

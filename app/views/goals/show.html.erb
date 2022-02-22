@@ -1,0 +1,23 @@
+<h1>Goals#show</h1>
+<h2>目標<h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @goal.id %></td>
+      <td><%= @goal.title %></td>
+      <td><%= @goal.description %></td>
+      <td><%= link_to "Edit", edit_goal_path(@goal) %></li>
+      <td><%= link_to "Delete", goal_path(@goal), method: :delete %></td>
+    </tr>
+  </tbody>
+</table>

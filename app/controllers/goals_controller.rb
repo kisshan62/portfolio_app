@@ -5,13 +5,13 @@ class GoalsController < ApplicationController
   end
 
   def create
-    @goal = current_user.goal.build(goal_params)
+    @goal = current_user.goals.build(goal_params)
     if @goal.save
       flash[:notice] = "Goal created!"
       redirect_to root_path
     else
       flash.now[:alert] = "Goal failed create!"
-      render :new
+      render "goals/new"
     end
   end
 

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :goal do
-    name { "MyString" }
+    title { "MyString" }
     description { "MyText" }
-    user { :user }
+    association :user
   end
 end

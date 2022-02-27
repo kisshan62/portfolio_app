@@ -1,16 +1,16 @@
 <h1>Goals#new</h1>
 <h2>目標新規作成<h2>
 
-<%= form_with model: @goal do |form| %>
-  <div>
+<%= form_with model: @goal, local: true do |form| %>
+  <div class=field>
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title %><br>
     <% @goal.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
-  <div>
+  <div class=field>
     <%= form.label :description %><br>
     <%= form.text_area :description %><br>
     <% @goal.errors.full_messages_for(:description).each do |message| %>

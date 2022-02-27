@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     redirect_to new_user_session_path unless user_signed_in?
-    @goals = current_user.goal.all.order("created_at DESC") if current_user
+    @goals = current_user.goals.all.order("created_at DESC") if current_user
     # @goal = current_user.goal
     # @goal = Goal.find(params[:goal])
   end

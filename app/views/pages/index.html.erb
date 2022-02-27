@@ -2,28 +2,6 @@
 <p>Find me in app/views/pages/index.html.erb</p>
 
 <%= link_to "新規投稿", new_goal_path %>
-<h2>新規登録<h2>
-  <%# <% if @goal %>
-    <%# <% if @goal.errors.any? %>
-      <%# <%= @goal.errors.full_messages %>
-    <%# <% end %>
-  <%# <% end %>
-
-  <%= form_with model: [ @goal, Goal.create ] do |form| %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control', id: 'goal_title'%>
-  </div>
-
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description, row: 5, class: 'form-control', id: 'goal_description' %>
-  </div>
-
-  <div>
-    <%= form.submit nil, class: 'btn btn-primary'%>
-  </div>
-<% end %>
 
 <h2>目標一覧<h2>
 

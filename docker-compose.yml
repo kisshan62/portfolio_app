@@ -12,6 +12,8 @@ services:
       - tmp-data:/webapp/tmp
     depends_on:
       - db
+    stdin_open: true
+    tty: true
   db:
     image: mysql:5.7
     env_file:

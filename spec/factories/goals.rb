@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :goal do
     name { "MyString" }
     description { "MyText" }
-    user { nil }
+    user { :user }
   end
 end

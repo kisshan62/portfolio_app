@@ -11,7 +11,7 @@ class GoalsController < ApplicationController
       redirect_to root_path
     else
       flash.now[:alert] = "Goal failed create!"
-      render 'pages/index'
+      render :new
     end
   end
 

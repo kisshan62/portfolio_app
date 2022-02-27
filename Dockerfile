@@ -24,3 +24,5 @@ RUN mkdir -p tmp/sockets
 
 # git設定
 RUN git config --global alias.lol "log --graph --decorate --pretty=oneline --all --abbrev-commit"
+RUN git config --global user.email "kishimotok@yahoo.co.jp"
+RUN git config --global user.name "kisshan62"

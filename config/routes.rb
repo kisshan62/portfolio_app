@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
-  root 'pages#index'
   devise_for :users,
     controllers: {
       omniauth_callbacks: 'users/omniauth_callbacks',
       confirmations: 'users/confirmations'
     }
   devise_scope :user do
+    root "devise/sessions#new"
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     put 'confirmation', to: 'users/confirmations#show', as: :back_confirmation
   end
-  # resources :users do
-  #   resources :goals
-  # end
-  # scope 'users/:user_id' do
-  #   resources :goals, only: [:show]
-  # end
-  # resources :goals, only: [:show]
-  resources :users, only: [:show]
+  resources :users do
+    member do
+     get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+  root 'users#show'
   resources :goals
+  resources :comments, only: [:delete, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

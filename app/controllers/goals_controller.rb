@@ -1,5 +1,8 @@
 class GoalsController < ApplicationController
 
+  #ユーザーのログイン状態を確かめる。
+  before_action :authenticate_user!
+  
   def new
     @goal = Goal.new
   end
@@ -17,6 +20,7 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find(params[:id])
+    @comments = @goal.comments
   end
 
   def edit

@@ -1,0 +1,6 @@
+<%= form_with scope: :goal, url: search_path, method: :get, local: true do |form| %>
+  <div class=search_field>
+    <%= form.text_field :keyword %>
+    <%= form.submit "search" %>
+  </div>
+<% end %>

@@ -15,8 +15,9 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
-  root 'users#show'
   resources :goals
   resources :comments, only: [:delete, :create]
+  # post 'search', to: 'goals#search'
+  get 'search', to: 'goals#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

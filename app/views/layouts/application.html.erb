@@ -4,33 +4,38 @@
     <title>Webapp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <nav>
+      <nav class="navbar">
+        <div class="container-fluid">
           <% if user_signed_in? %>
             <%= link_to 'home', user_path(current_user) %>
             <%= link_to 'プロフィール変更', edit_user_registration_path %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+            <%= render "layouts/search_form" %>
           <% else %>
             <%= link_to 'home', root_path %>
           <% end %>
+        </div>
       </nav>
     </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <%= "debug(params)" if Rails.env.development? %>
-    <%= debug(params) if Rails.env.development? %>
-    <%= "debug(@user)" if Rails.env.development? %>
-    <%= debug(@user) if Rails.env.development? %>
-    <%= "debug(@goal)" if Rails.env.development? %>
-    <%= debug(@goal) if Rails.env.development? %>
-    <%= "debug(@goals)" if Rails.env.development? %>
-    <%= debug(@goals) if Rails.env.development? %>
+
+    <div class="debug-param small mt-5">
+      <%= "debug(params)" if Rails.env.development? %>
+      <%= debug(params) if Rails.env.development? %>
+      <%= "debug(@user)" if Rails.env.development? %>
+      <%= debug(@user) if Rails.env.development? %>
+      <%= "debug(@goal)" if Rails.env.development? %>
+      <%= debug(@goal) if Rails.env.development? %>
+      <%= "debug(@goals)" if Rails.env.development? %>
+      <%= debug(@goals) if Rails.env.development? %>
+    <div>
   </body>
 </html>

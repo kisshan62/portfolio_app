@@ -1,8 +1,10 @@
 FROM ruby:2.5.3
 
 # リポジトリを更新し依存モジュールをインストール
-RUN apt-get update -qq && \
-    apt-get install -y build-essential nodejs
+RUN apt update && apt install -y \
+    build-essential
+# nodejs v14系インストール
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && apt install -y nodejs
 
 # ルート直下にwebappという名前で作業ディレクトリを作成（コンテナ内のアプリケーションディレクトリ）
 ENV APP_ROOT /webapp
@@ -23,6 +25,6 @@ ADD . $APP_ROOT
 RUN mkdir -p tmp/sockets
 
 # git設定
-RUN git config --global alias.lol "log --graph --decorate --pretty=oneline --all --abbrev-commit"
-RUN git config --global user.email "kishimotok@yahoo.co.jp"
-RUN git config --global user.name "kisshan62"
+RUN git config --global alias.lol "log --graph --decorate --pretty=oneline --all --abbrev-commit" \
+    git config --global user.email "kishimotok@yahoo.co.jp" \
+    git config --global user.name "kisshan62"

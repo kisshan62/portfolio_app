@@ -1,0 +1,21 @@
+<%= form_with model: @goal, local: true do |form| %>
+  <div class=field>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %><br>
+    <% @goal.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class=field>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %><br>
+    <% @goal.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

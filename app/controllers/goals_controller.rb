@@ -45,14 +45,14 @@ class GoalsController < ApplicationController
   end
 
   def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    @goals = Goal.search(params[:keyword])
+    # Viewのformで取得したパラメータをモデルに渡す
+    @goals = Goal.search(params[:goal][:keyword])
     # redirect_to search_path
   end
 
   private
 
     def goal_params
-      params.require(:goal).permit(:title, :description)
+      params.require(:goal).permit(:title, :description, :keyword)
     end
 end

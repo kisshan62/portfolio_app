@@ -8,6 +8,7 @@
 
 User.create(
   email: "guest@example.com",
+  username: "guestuser",
   created_at: Time.now,
   updated_at: Time.now,
   confirmed_at: Time.now,
@@ -17,6 +18,7 @@ User.create(
 5.times do |n|
   User.create!(
     email: "test#{n + 1}@test.com",
+    username: "username#{n + 1}",
     created_at: Time.now,
     updated_at: Time.now,
     confirmed_at: Time.now,
@@ -26,7 +28,7 @@ end
 
 User.all.each do |user|
   user.goals.create!(
-    title: 'タイトル',
-    description: 'テキストテキストテキストテキスト'
+    title: user.username,
+    description: "description #{user.username}"
   )
 end

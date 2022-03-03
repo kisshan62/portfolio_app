@@ -6,6 +6,7 @@ class Goal < ApplicationRecord
   def self.search(keyword)
     # return Goal.all unless search
     # Goal.where(['title LIKE OR description LIKE ?', "%#{search}%", "%#{search}%"])
-    Goal.where(['description LIKE ?', "%#{keyword}%"])
+    # Goal.where(['description LIKE ?', "%#{keyword}%"])
+    @goal_model = Goal.where(['title LIKE ? OR description LIKE ?', "%#{keyword}%", "%#{keyword}%"])
   end
 end

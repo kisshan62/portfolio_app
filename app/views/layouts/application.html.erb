@@ -9,20 +9,8 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar">
-        <div class="container-fluid">
-          <% if user_signed_in? %>
-            <%= link_to 'home', user_path(current_user) %>
-            <%= link_to 'プロフィール変更', edit_user_registration_path %>
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <%= render "layouts/search_form" %>
-          <% else %>
-            <%= link_to 'home', root_path %>
-          <% end %>
-        </div>
-      </nav>
-    </header>
+    <%= render 'layouts/header' %>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>

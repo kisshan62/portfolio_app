@@ -1,0 +1,16 @@
+<h2>コメント新規投稿</h2>
+
+<%= form_with(model: @comment, url: comments_path ) do |f| %>
+  <div class=field>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %><br>
+    <%= f.hidden_field :goal_id, value: @goal.id %>
+    <% @goal.errors.full_messages_for(:content).each do |m| %>
+      <div><%= m %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

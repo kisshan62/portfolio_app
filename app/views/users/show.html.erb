@@ -1,31 +1,35 @@
-<h1>Users#show</h1>
-<p>ユーザページ <%= @user.email %></p>
-<h2>目標一覧<h2>
+<div class=container>
+  <h1>Users#show</h1>
+  <h2><%= @user.email %></h2>
+  <%= render 'follow_stats' %>
+  <%= render 'follow_form' %>
+  <% if current_user == @user %>
+    <%= link_to "新規投稿", new_goal_path, {class: "btn btn-large btn-primary"} %>
+  <% end %>
+</div>
 
-<%= render 'layouts/stats' %>
-<%= render 'layouts/follow_form' %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>my_goal<h2>
+        <ul "list-group">
+          <% @goals.each do |goal| %>
+            <li class="list-group-item">title:<%= link_to goal.title, goal_path(goal.id) %></li>
+            <li class="list-group-item">description:<%= goal.description %></li>
+          <% end %>
+        </ul>
+    </div>
 
-<% if current_user == @user %>
-  <%= link_to "新規投稿", new_goal_path %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= link_to goal.id, goal_path(goal.id) %></td>
-        <td><%= goal.title %></td>
-        <td><%= goal.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="col">
+      <h2>following_goal<h2>
+        <ul "list-group">
+          <% @user.followings.each do |f| %>
+            <% f.goals.each do |g| %>
+              <li class="list-group-item">title:<%= link_to g.title, goal_path(g.id) %></li>
+              <li class="list-group-item">description:<%= g.description %></li>
+            <% end %>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+</div>

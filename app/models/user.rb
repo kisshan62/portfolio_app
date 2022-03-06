@@ -54,4 +54,20 @@ class User < ApplicationRecord
     # メールアドレス確認メール有効期限チェック(期限はconfig/initializers/devise.rbのconfirm_withinで設定)
     self.confirmation_period_expired?
   end
+
+  def self.search(keyword, search_pattern)
+    split_keyword = keyword.split(/[[:blank:]]+/).select(&:present?).uniq
+    if search_pattern == "or_match"
+      @users = User.none
+      split_keyword.each do |keyword|
+        @users = @users.or(User.where(['username LIKE ?', "%#{keyword}%"]))
+      end
+    elsif search_pattern == "and_match"
+      @users = User
+      split_keyword.each do |keyword|
+        @users = @users.where(['username LIKE ?', "%#{keyword}%"])
+      end
+    end
+    @users
+  end
 end

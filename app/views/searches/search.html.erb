@@ -1,0 +1,27 @@
+<p>検索結果</p>
+<%= render "layouts/search_form" %>
+
+<% if @range == "User" %>
+  <ul><% @users.each do |user| %>
+    <li>
+      <%= link_to user.username, user %>
+    </li>
+  </ul>
+  <% end %>
+<% elsif @range == "Goal" %>
+  <ul><% @goals.each do |goal| %>
+    <li>
+      <%= link_to goal.title, goal %>
+      <%= goal.created_at %>
+    </li>
+  </ul>
+  <% end %>
+<% else %>
+  <ul><% @comments.each do |comment| %>
+    <li>
+      <%= link_to comment.goal.title, goal_path(comment.goal_id) %>
+      <%= comment.content %>
+    </li>
+  </ul>
+  <% end %>
+<% end %>

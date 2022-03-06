@@ -1,7 +1,8 @@
-<%# <%= form_with scope: :goal, url: search_path, method: :get, local: true do |form| %>
-<%= form_with scope: :goal, url: search_path(:keyword), method: :post, local: true do |form| %>
+<%= form_with scope: :search, url: search_path, method: :get, local: true do |f| %>
   <div class=search_field>
-    <%= form.text_field :keyword %>
-    <%= form.submit "search" %>
+    <%= f.select :range, options_for_select([['User'], ['Goal'], ['Comment']]) %>
+    <%= f.select :search_pattern, options_for_select([["and","and_match"], ["or","or_match"]]) %>
+    <%= f.text_field :keyword %>
+    <%= f.submit "search" %>
   </div>
 <% end %>

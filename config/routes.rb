@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :goals
   resources :comments, only: [:delete, :create]
-  post 'search', to: 'goals#search'
-  # get 'search', to: 'goals#search'
+  # post 'search', to: 'searches#search'
+  get 'search', to: 'searches#search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

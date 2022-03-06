@@ -4,9 +4,13 @@ class Goal < ApplicationRecord
   validates :title, :description, presence: true
 
   def self.search(keyword)
-    # return Goal.all unless search
-    # Goal.where(['title LIKE OR description LIKE ?', "%#{search}%", "%#{search}%"])
-    # Goal.where(['description LIKE ?', "%#{keyword}%"])
-    @goal_model = Goal.where(['title LIKE ? OR description LIKE ?', "%#{keyword}%", "%#{keyword}%"])
+    # @goals = Goal.where(['title LIKE ? OR description LIKE ?', "%#{keyword}%", "%#{keyword}%"])
+    split_keyword = keyword.split(/[[:blank:]]+/).select(&:present?).uniq
+    @goals = Goal.none
+    # binding.pry
+    split_keyword.each do |keyword|
+      @goals = @goals.or(Goal.where(['title LIKE ? OR description LIKE ?', "%#{keyword}%", "%#{keyword}%"]))
+    end
+    @goals
   end
 end

@@ -26,9 +26,20 @@ User.create(
   )
 end
 
+3.times do |n|
+  User.all.each do |user|
+    user.goals.create!(
+      title: "#{n} user.username",
+      description: "description #{user.username}"
+    )
+  end
+end
+
 User.all.each do |user|
-  user.goals.create!(
-    title: user.username,
-    description: "description #{user.username}"
-  )
+  user.goals.each do |goal|
+    goal.comments.create!(
+      user_id: goal.user_id,
+      content: "#{goal.user.username} comment"
+    )
+  end
 end

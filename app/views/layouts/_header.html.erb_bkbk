@@ -1,0 +1,26 @@
+<header>
+  <ul class="nav">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'home', user_path(current_user), {class: "nav-link"} %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '通知', notifications_path , {class: "nav-link"} %>
+          <% if !unchecked_notifications.any? %>
+            <i class="fa fa-circle notification-circle"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'プロフィール変更', edit_user_registration_path , {class: "nav-link"} %>
+        </li>
+         <%= link_to 'ログアウト', destroy_user_session_path, {method: :delete, class: "nav-link"} %>
+        <li class="nav-item">
+         <%= render "layouts/search_form" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'home', root_path , {class: "nav-link"} %>
+        </li>
+      <% end %>
+  </ul>
+</header>

@@ -1,0 +1,13 @@
+<h2>following_goal<h2>
+
+<% @following_goals.order("created_at DESC").each do |g| %>
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= link_to g.user.username, user_path(g.user_id) %></h5>
+        <h5 class="card-title"><%= link_to g.title, g %></h5>
+        <h6 class="card-subtitle"><%= start_day_state(g) %></h6>
+        <h6 class="card-subtitle"><%= due_day_state(g) %></h6>
+        <p class="card-text"><%= g.description %></p>
+    </div>
+  </div>
+<% end %>

@@ -1,15 +1,34 @@
 <header>
-  <nav class="navbar">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <% if user_signed_in? %>
-        <%= link_to 'home', user_path(current_user) %>
-        <%= link_to '通知', notifications_path %>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <%= render "layouts/search_form" %>
-      <% else %>
-        <%= link_to 'home', root_path %>
-      <% end %>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'home', user_path(current_user), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '通知', notifications_path, class: "nav-link" %>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle notification-circle"></i>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'プロフィール変更', edit_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= render "layouts/search_form" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'home', root_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

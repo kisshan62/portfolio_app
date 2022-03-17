@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <%= f.label :title, {class: "form-label small"} %>
+  <%= f.text_field :title, {class: "form-control small"}%>
+  <%= f.label :description, {class: "form-label small"} %>
+  <%= f.text_area :description, {class: "form-control small", style: "height: 200px"} %>
+  <%= f.label :start_date %>
+  <%= f.date_field :start_date %>
+  <%= f.label :due_date %>
+  <%= f.date_field :due_date %>
+  <div><%= link_to_remove_association "小目標削除", f, class: 'btn btn-success mt-3' %></div>
+</div>

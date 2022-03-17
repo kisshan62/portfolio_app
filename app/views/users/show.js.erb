@@ -1,0 +1,12 @@
+<%# $("#goals").html("<%= j(render partial: "goals/goal_each", collection: @done_goals, as: :goal) %>
+$(".all_mygoals").on("click", function() {
+  $("#mygoals").html("<%= j(render partial: "goals/goal_each", collection: @goals, as: :goal) %>");
+});
+
+$(".done").on("click", function() {
+  $("#mygoals").html("<%= j(render partial: "goals/goal_each", collection: @done_goals, as: :goal) %>");
+});
+
+$(".undone").on("click", function() {
+  $("#mygoals").html("<%= j(render partial: "goals/goal_each", collection: @undone_goals, as: :goal) %>");
+});

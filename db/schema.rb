@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_08_145244) do
+ActiveRecord::Schema.define(version: 2022_03_14_134511) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content", null: false
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2022_03_08_145244) do
     t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
   end
 
+  create_table "steps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "goal_id"
+    t.date "start_date"
+    t.date "due_date"
+    t.boolean "done", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_steps_on_goal_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,6 +87,7 @@ ActiveRecord::Schema.define(version: 2022_03_08_145244) do
     t.string "provider"
     t.string "uid"
     t.string "username"
+    t.text "profile"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -83,4 +96,5 @@ ActiveRecord::Schema.define(version: 2022_03_08_145244) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "goals", "users"
+  add_foreign_key "steps", "goals"
 end

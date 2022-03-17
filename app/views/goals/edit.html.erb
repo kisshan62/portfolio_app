@@ -1,4 +1,7 @@
-<h1>Goals#edit</h1>
-<h2>目標<h2>
+<% provide(:title, "Goals#edit") %>
+
+<h2>目標編集<h2>
 
 <%= render 'goal_form' %>
+
+<%= link_to "Back", :back, { class: "btn mt-3" } %>

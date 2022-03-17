@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webapp</title>
+    <title><%= full_title yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,11 +11,14 @@
 
   <body>
     <%= render 'layouts/header' %>
-
+    <div class="container mt-3">
+      <h1><%= full_title yield(:title) %></h1>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
-
+    <div class="container">
+      <%= yield %>
+    </div>
     <div class="debug-param small mt-5">
       <%= "debug(params)" if Rails.env.development? %>
       <%= debug(params) if Rails.env.development? %>

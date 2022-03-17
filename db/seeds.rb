@@ -26,13 +26,29 @@ User.create(
   )
 end
 
-3.times do |n|
+# 3.times do |n|
   User.all.each do |user|
     user.goals.create!(
-      title: "#{n} user.username",
-      description: "description #{user.username}"
+      title: "#{user.username}'s NO.#{n} title",
+      description: " #{user.username}'s No.#{n} description"
     )
   end
+# end
+
+# 3.times do |n|
+  User.all.each do |user|
+    user.goals.create!(
+      title: "#{user.username}'s title without start_day",
+      description: " #{user.username}'s No.#{n} description without start_day"
+    )
+  end
+# end
+
+User.all.each do |user|
+  user.goals.create!(
+    title: "#{user.username}'s title without due_day",
+    description: " #{user.username}'s No.#{n} description without due_day"
+  )
 end
 
 User.all.each do |user|

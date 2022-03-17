@@ -2,8 +2,10 @@ class Goal < ApplicationRecord
   validates :title, :description, presence: true
   
   belongs_to :user
+  has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  accepts_nested_attributes_for :steps, allow_destroy: true
 
   def self.search(keyword, search_pattern)
     split_keyword = keyword.split(/[[:blank:]]+/).select(&:present?).uniq

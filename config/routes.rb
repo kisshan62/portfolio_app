@@ -15,9 +15,17 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :goals
-  resources :comments, only: [:delete, :create]
-  # post 'search', to: 'searches#search'
+  resources :goals do
+    member do
+      patch 'done', 'undone'
+    end
+    resources :steps, only: [:create, :destroy] do
+      member do
+        patch 'done', 'undone'
+      end
+    end
+  end
+  resources :comments, only: [:create, :destroy]
   get 'search', to: 'searches#search'
   resources :notifications, only: :index
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

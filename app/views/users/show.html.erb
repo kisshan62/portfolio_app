@@ -1,26 +1,63 @@
-<div class=container>
-  <h1>Users#show</h1>
-  <h2><%= @user.username %></h2>
-  <%= render 'follow_stats' %>
-  <%= render 'follow_form' %>
-  <% if current_user == @user %>
-    <%= link_to "新規投稿", new_goal_path, {class: "btn btn-large btn-primary"} %>
-  <% end %>
-</div>
+<% if current_user == @user %>
+  <% provide :title, "マイページ" %>
+<% else %>
+  <% provide :title, @user.username %>
+<% end %>
+
+<h2><%= @user.username %></h2>
+<%= render 'follow_stats' %>
+<div class="container mt-3">
+<%= render 'follow_form' %>
+<% if current_user == @user %>
+  <%= link_to "新規投稿", new_goal_path, {class: "btn btn-large btn-primary"} %>
+<% end %>
 
 <% if current_user == @user %>
-  <div class="container">
+  <div class="container mt-3">
     <div class="row">
       <div class="col-sm-6">
-        <%= render 'my_goals' %>
+        <% if @user.goals.count == 0 %>
+          <h2>goalを投稿しましょう</h2>
+        <% else %>
+          <h2>Mygoals</h2>
+          <div class="row">
+            <div class="col">
+              <h6><%= link_to "すべて", @user, remote: true, class: "all_mygoals" %></h6>
+            </div>
+            <div class="col">
+              <h6><%= link_to "継続中", @user, remote: true, class: "undone" %></h6>
+            </div>
+            <div class="col">
+              <h6><%= link_to "完了", @user, remote: true, class: "done" %></h6>
+            </div>
+          </div>
+          <div id="mygoals">
+            <%= render partial: 'goals/goal_each', collection: @goals, as: :goal %>
+          </div>
+        <% end %>
       </div>
       <div class="col-sm-6">
-        <%= render 'following_goals' %>
+        <% if @following_goals.count == 0 %>
+          <h2>followingの投稿がありません。検索してuserをfollowしましょう。</h2>
+        <% else %>
+          <h2>following_goal<h2>
+          <div class="row">
+            <div class="col">
+              <h6>All</h6>
+            </div>
+          <div id="following_goals">
+            <%= render partial: 'goals/goal_each', collection: @following_goals.order("created_at DESC"), as: :goal %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 <% else %>
-  <div class="container">
-    <%= render 'mygoals' %>
+  <div class="container mt-3">
+    <% if @user.goals.count == 0 %>
+      <h2>goalが投稿されていません。</h2>
+    <% else %>
+      <%= render partial: 'goals/goal_each', collection: @goals, as: :goal %>
+    <% end %>
   </div>
 <% end %>

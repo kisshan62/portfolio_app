@@ -1,13 +1,14 @@
-<h1>Goals#show</h1>
+<% provide(:title, "Goals#show") %>
+
 <h2><%= link_to @goal.user.email, user_path(@goal.user) %><h2>
 
-<h2>my_goal<h2>
-  <ul "list-group">
-      <li class="list-group-item">title:<%= link_to @goal.title, goal_path %></li>
-      <li class="list-group-item">description:<%= @goal.description %></li>
-      <li class="list-group-item"><%= link_to "Edit", edit_goal_path(@goal) %></li>
-      <li class="list-group-item"><%= link_to "Delete", goal_path(@goal), method: :delete %></li>
-  </ul>
+<%= render partial:'goal_each', locals: { goal: @goal } %>
+
+<% if current_user == @goal.user %>
+  <%= render 'goal_button' %>
+<% end %>
+
+<div class="container mt-5"></div>
 
 <%= render 'comment_form' %>
 

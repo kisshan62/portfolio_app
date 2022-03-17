@@ -5,6 +5,7 @@ class GoalsController < ApplicationController
   
   def new
     @goal = Goal.new
+    @goal_steps = @goal.steps.build
   end
 
   def create
@@ -14,7 +15,7 @@ class GoalsController < ApplicationController
       redirect_to root_path
     else
       flash.now[:alert] = "Goal failed create!"
-      render "goals/new"
+      render :new
     end
   end
 
@@ -44,9 +45,24 @@ class GoalsController < ApplicationController
     redirect_to root_path
   end
 
+  def done
+    @goal = Goal.find(params[:id])
+    @comments = @goal.comments
+    @goal.update_attribute(:done, true)
+    render "goals/show"
+  end
+
+  def undone
+    @goal = Goal.find(params[:id])
+    @comments = @goal.comments
+    @goal.update_attribute(:done, false)
+    render "goals/show"
+  end
+
   private
 
     def goal_params
-      params.require(:goal).permit(:title, :description, :keyword)
+      params.require(:goal).permit(:title, :description, :start_date, :due_date, :keyword,
+      steps_attributes: [:title, :description, :start_date, :due_date, :_destroy])
     end
 end

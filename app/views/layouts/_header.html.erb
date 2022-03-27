@@ -1,11 +1,14 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
     <div class="container-fluid">
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to 'home', root_path, class: "nav-link" %>
+          </li>
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to 'home', user_path(current_user), class: "nav-link" %>
+              <%= link_to 'マイページ', user_path(current_user), class: "nav-link" %>
             </li>
             <li class="nav-item">
               <%= link_to '通知', notifications_path, class: "nav-link" %>
@@ -24,7 +27,10 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to 'home', root_path, class: "nav-link" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '会員登録', new_user_registration_path, class: "nav-link" %>
             </li>
           <% end %>
         </ul>

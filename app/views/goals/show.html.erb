@@ -1,33 +1,35 @@
 <% provide(:title, "Goals#show") %>
 
-<h2><%= link_to @goal.user.email, user_path(@goal.user) %><h2>
+<div class="container">
+  <h2><%= link_to @goal.user.username, user_path(@goal.user) %><h2>
 
-<%= render partial:'goal_each', locals: { goal: @goal } %>
+  <%= render partial:'goal_each', locals: { goal: @goal } %>
 
-<% if current_user == @goal.user %>
-  <%= render 'goal_button' %>
-<% end %>
+  <% if current_user == @goal.user %>
+    <%= render 'goal_button' %>
+  <% end %>
 
-<div class="container mt-5"></div>
+  <div class="mt-5">
+    <%= render 'comment_form' %>
+  </div>
 
-<%= render 'comment_form' %>
-
-<div>コメント一覧</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>username</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @comments.each do |comment| %>
+  <div class="mt-4">コメント一覧</div>
+  <table class="table mt-3">
+    <thead>
       <tr>
-        <td><%= link_to comment.user.username, user_path(comment.user_id) %></td>
-        <td><%= comment.content %></td>
+        <th>ユーザ名</th>
+        <th>内容</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= link_to comment.user.username, user_path(comment.user_id) %></td>
+          <td><%= comment.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       confirmations: 'users/confirmations'
     }
   devise_scope :user do
-    root "devise/sessions#new"
+    # root "devise/sessions#new"
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     put 'confirmation', to: 'users/confirmations#show', as: :back_confirmation
   end
@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
   get 'search', to: 'searches#search'
   resources :notifications, only: :index
+  root 'homes#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

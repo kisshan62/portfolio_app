@@ -241,11 +241,11 @@ sup {
 }
 
 a {
-  color: #ffc800;
+  color: var(--bs-gray-700);
   text-decoration: underline;
 }
 a:hover {
-  color: #cca000;
+  color: var(--bs-purple);
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -2191,7 +2191,25 @@ progress {
   color: #6c757d;
 }
 
-.form-control {
+// .form-control {
+//   display: block;
+//   width: 100%;
+//   padding: 0.375rem 0.75rem;
+//   font-size: 1rem;
+//   font-weight: 400;
+//   line-height: 1.5;
+//   color: #212529;
+//   background-color: #fff;
+//   background-clip: padding-box;
+//   border: 1px solid #ced4da;
+//   -webkit-appearance: none;
+//      -moz-appearance: none;
+//           appearance: none;
+//   border-radius: 0.25rem;
+//   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+// }
+
+@mixin baseForm {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
@@ -2208,6 +2226,16 @@ progress {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.form-control {
+  @include baseForm;
+}
+
+.form-control-high {
+  @include baseForm;
+  height: 200px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .form-control {
     transition: none;
@@ -2219,13 +2247,14 @@ progress {
 .form-control[type=file]:not(:disabled):not([readonly]) {
   cursor: pointer;
 }
-.form-control:focus {
+.form-control:focus,
+.form-control-high:focus {
   color: #212529;
   background-color: #fff;
-  border-color: #ffe480;
+  border-color: var(--bs-blue);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 200, 0, 0.25);
 }
+
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;
 }
@@ -2261,7 +2290,8 @@ progress {
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.form-control::file-selector-button {
+.form-control::file-selector-button,
+.form-control-high::file-selector-button {
   padding: 0.375rem 0.75rem;
   margin: -0.375rem -0.75rem;
   -webkit-margin-end: 0.75rem;
@@ -2997,26 +3027,26 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+// .btn {
+//   display: inline-block;
+//   font-weight: 400;
+//   line-height: 1.5;
+//   color: #212529;
+//   text-align: center;
+//   text-decoration: none;
+//   vertical-align: middle;
+//   cursor: pointer;
+//   -webkit-user-select: none;
+//      -moz-user-select: none;
+//       -ms-user-select: none;
+//           user-select: none;
+//   background-color: transparent;
+//   border: 1px solid transparent;
+//   padding: 0.375rem 0.75rem;
+//   font-size: 1rem;
+//   border-radius: 0.25rem;
+//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+// }
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -3035,14 +3065,25 @@ textarea.form-control-lg {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #ffc800;
-  border-color: #ffc800;
+  color: var(--bs-white);
+  background-color: var(--bs-yellow);
+  border-color: var(--bs-yellow);
 }
 .btn-primary:hover {
-  color: #fff;
+  color: var(--bs-white);
   background-color: #d9aa00;
-  border-color: #cca000;
+  border-color: #d9aa00;
+}
+
+.btn-primary-black {
+  color: var(--bs-black);
+  background-color: var(--bs-yellow);
+  border-color: var(--bs-yellow);
+}
+.btn-primary-black:hover {
+  color: var(--bs-black);
+  background-color: #d9aa00;
+  border-color: #d9aa00;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
@@ -4478,40 +4519,40 @@ textarea.form-control-lg {
   color: rgba(0, 0, 0, 0.9);
 }
 
-.navbar-dark .navbar-brand {
-  color: #fff;
-}
-.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-  color: #fff;
-}
-.navbar-dark .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 0.55);
-}
-.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
-  color: rgba(255, 255, 255, 0.75);
-}
-.navbar-dark .navbar-nav .nav-link.disabled {
-  color: rgba(255, 255, 255, 0.25);
-}
-.navbar-dark .navbar-nav .show > .nav-link,
-.navbar-dark .navbar-nav .nav-link.active {
-  color: #fff;
-}
-.navbar-dark .navbar-toggler {
-  color: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-.navbar-dark .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-.navbar-dark .navbar-text {
-  color: rgba(255, 255, 255, 0.55);
-}
-.navbar-dark .navbar-text a,
-.navbar-dark .navbar-text a:hover,
-.navbar-dark .navbar-text a:focus {
-  color: #fff;
-}
+// .navbar-dark .navbar-brand {
+//   color: #fff;
+// }
+// .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+//   color: #fff;
+// }
+// .navbar-dark .navbar-nav .nav-link {
+//   color: rgba(255, 255, 255, 0.55);
+// }
+// .navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+//   color: rgba(255, 255, 255, 0.75);
+// }
+// .navbar-dark .navbar-nav .nav-link.disabled {
+//   color: rgba(255, 255, 255, 0.25);
+// }
+// .navbar-dark .navbar-nav .show > .nav-link,
+// .navbar-dark .navbar-nav .nav-link.active {
+//   color: #fff;
+// }
+// .navbar-dark .navbar-toggler {
+//   color: rgba(255, 255, 255, 0.55);
+//   border-color: rgba(255, 255, 255, 0.1);
+// }
+// .navbar-dark .navbar-toggler-icon {
+//   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+// }
+// .navbar-dark .navbar-text {
+//   color: rgba(255, 255, 255, 0.55);
+// }
+// .navbar-dark .navbar-text a,
+// .navbar-dark .navbar-text a:hover,
+// .navbar-dark .navbar-text a:focus {
+//   color: #fff;
+// }
 
 .card {
   position: relative;
@@ -11346,8 +11387,10 @@ p {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  // background-color: var(--bs-secondary);
   background-color: #212529;
 }
+
 #mainNav .navbar-toggler {
   padding: 0.75rem;
   font-size: 0.75rem;
@@ -11411,29 +11454,23 @@ p {
   }
 }
 header.masthead {
-  padding-top: 10.5rem;
+  // padding-top: 10.5rem;
   padding-bottom: 6rem;
   text-align: center;
-  color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
+  background-image: image-url("top.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
 }
-header.masthead .masthead-subheading {
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1.5rem;
-  margin-bottom: 25px;
-  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
 header.masthead .masthead-heading {
+  color: var(--bs-dark);
   font-size: 3.25rem;
   font-weight: 700;
   line-height: 3.25rem;
   margin-bottom: 2rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  vertical-align: super;
 }
 
 @media (min-width: 768px) {

@@ -6,7 +6,7 @@
       <% if @goal.done == false %>  
           <%= link_to "Done", done_goal_path(@goal), method: :patch, class: "btn btn-large btn-primary" %>
       <% else %>
-          <%= link_to "Undone", undone_goal_path(@goal), method: :patch %>
+          <%= link_to "Undone", undone_goal_path(@goal), method: :patch, class: "btn btn-large btn-primary"  %>
       <% end %>
     </div>
   </div>

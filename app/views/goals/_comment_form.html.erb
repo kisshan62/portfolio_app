@@ -2,7 +2,6 @@
 
 <%= form_with(model: @comment, url: comments_path ) do |f| %>
   <div class=field>
-    <%= f.label :content %><br>
     <%= f.text_field :content %><br>
     <%= f.hidden_field :goal_id, value: @goal.id %>
     <% @goal.errors.full_messages_for(:content).each do |m| %>
@@ -10,7 +9,7 @@
     <% end %>
   </div>
 
-  <div>
-    <%= f.submit %>
+  <div class="mt-3">
+    <%= f.submit name="投稿", class: "btn btn-primary" %>
   </div>
 <% end %>

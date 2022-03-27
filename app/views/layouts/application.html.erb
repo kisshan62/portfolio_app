@@ -6,19 +6,22 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Font Awesome icons (free version)-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <div class="container mt-3">
-      <h1><%= full_title yield(:title) %></h1>
-    </div>
+    <%# <div class="container mt-3"> %>
+      <%# <h1><%= full_title yield(:title) %></h1>
+    <%# </div> %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class="container">
-      <%= yield %>
-    </div>
+    
+    <%= yield %>
+    
     <div class="debug-param small mt-5">
       <%= "debug(params)" if Rails.env.development? %>
       <%= debug(params) if Rails.env.development? %>

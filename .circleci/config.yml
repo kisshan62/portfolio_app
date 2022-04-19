@@ -19,7 +19,7 @@ workflows:
           # Dockerfleのパス(デフォルトはカレントディレクトリのパス)
           dockerfile: ./nginx/Dockerfile
           # ECRのリポジトリ
-          repo: nginx-sample
+          repo: nginx
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
@@ -28,11 +28,11 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           # ECSのタスク定義名
-          family: 'sample'
+          family: 'portfolio-task-def'
           # ECSのクラスター名かARNのフルパス
-          cluster-name: 'sample-cluster'
+          cluster-name: 'portfoli-cluster'
           # サービス名
-          service-name: 'sample-alb-service'
+          service-name: 'portfolio-service'
           # containerはタスク定義で設定したコンテナ名にする
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
 
@@ -46,9 +46,9 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           # ECRにリポジトリがなかったら創るか？
           create-repo: true
-          dockerfile: ./Dockerfile.prod
+          dockerfile: ./Dockerfile_prod
           # ECRのリポジトリ
-          repo: rails-sample
+          repo: rails
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
@@ -57,10 +57,10 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           # ECSのタスク定義名
-          family: 'sample'
+          family: 'portfolio-task-def'
           # ECSのクラスター名かARNのフルパス
-          cluster-name: 'sample-cluster'
+          cluster-name: 'portfoli-cluster'
           # サービス名
-          service-name: 'sample-alb-service'
+          service-name: 'portfolio-service'
           # containerはタスク定義で設定したコンテナ名にする
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"

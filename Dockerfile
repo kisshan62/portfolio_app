@@ -1,9 +1,5 @@
 FROM ruby:2.5.3
 
-# production
-ENV RAILS_ENV=production
-ENV RAILS_LOG_TO_STDOUT=1
-
 # リポジトリを更新し依存モジュールをインストール
 RUN apt update && apt install -y \
     build-essential
@@ -24,9 +20,6 @@ RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . $APP_ROOT
-
-# ログを削除
-RUN rm -f $APP_ROOT/log/*
 
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets

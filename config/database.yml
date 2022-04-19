@@ -13,3 +13,9 @@ development:
 test:
   <<: *default
   database: webapp_test
+
+production:
+  <<: *default
+  # database: webapp_development
+  database: webapp_production
+  host: <%= ENV['DB_HOST'] %>

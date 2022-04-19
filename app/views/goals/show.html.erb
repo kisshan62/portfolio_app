@@ -13,23 +13,25 @@
     <%= render 'comment_form' %>
   </div>
 
-  <div class="mt-4">コメント一覧</div>
-  <table class="table mt-3">
-    <thead>
-      <tr>
-        <th>ユーザ名</th>
-        <th>内容</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @comments.each do |comment| %>
+  <div class="mt-4">
+    <h3>コメント一覧</h3>
+    <table class="table mt-3 small">
+      <thead>
         <tr>
-          <td><%= link_to comment.user.username, user_path(comment.user_id) %></td>
-          <td><%= comment.content %></td>
+          <th>ユーザ名</th>
+          <th>内容</th>
+          <th colspan="5"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= link_to comment.user.username, user_path(comment.user_id) %></td>
+            <td><%= comment.content %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

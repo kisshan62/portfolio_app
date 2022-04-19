@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationships
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_one_attached :avatar
+  
+  validates :username, presence: true
 
   # デフォルトの設定に、:omniauthable以下を追加
   devise :database_authenticatable, :registerable,

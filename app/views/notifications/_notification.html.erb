@@ -3,12 +3,12 @@
 
 <div class="user-view clearfix">
   <%= link_to user_path(notification.visitor) do %>
-    <%=  image_tag 'https://picsum.photos/200', class:"user-thumb", style:"width: 60px;"%>
-  <% end %>
-  <%== notification_form(notification) %>
-  <span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span>
-  <br>
-  <% if !@comment.nil? %>
-    <p class="moderate-font"><%= @comment %></p>
+    <% if visitor.avatar.attached? %>
+      <%= image_tag visitor.avatar, class:"user-thumb" %>
+    <% else %>
+      <%= image_tag "kkrn_icon_user_14.png" %>
+    <% end %>
+    <%== notification_form(notification) %>
+    <span class="moderate-font"><%= "(#{time_ago_in_words(notification.created_at)}前)" %></span>
   <% end %>
 </div>

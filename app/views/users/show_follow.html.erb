@@ -1,8 +1,26 @@
-<% @user.followings.each do |user| %>
-  <table>
-    <tr>
-      <td><%= user.email %></td>
-      <td><%= link_to '詳細', user_path(user) %></td>
-    </tr>
-  </table>
-<% end %>
+<div class="container">
+  <% if @user.followings.count == 0 %>
+    <h2>フォロワーがいません</h2>
+  <% else %>
+    <% @user.followings.each do |user| %>
+      <table class="table">
+        <tr>
+          <th>#</th>
+          <th>ユーザ名</th>
+          <th>リンク</th>
+        </tr>
+        <tr>
+          <td>
+            <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar %>
+            <% else %>
+              <%= image_tag "kkrn_icon_user_14.png" %>
+            <% end %>
+          </td>
+          <td><%= user.username %></td>
+          <td><%= link_to '詳細', user_path(user) %></td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+</div>

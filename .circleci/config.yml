@@ -17,7 +17,7 @@ workflows:
           # ECRにリポジトリがなかったら創るか？
           create-repo: true
           # Dockerfleのパス(デフォルトはカレントディレクトリのパス)
-          dockerfile: ./nginx/Dockerfile
+          dockerfile: ./nginx/Dockerfile_prod
           # ECRのリポジトリ
           repo: nginx
           tag: "${CIRCLE_SHA1}"
@@ -34,7 +34,7 @@ workflows:
           # サービス名
           service-name: 'portfolio-service'
           # containerはタスク定義で設定したコンテナ名にする
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=nginx,tag=latest"
 
   # Railsのデプロイ
   rails-deploy:
@@ -63,4 +63,4 @@ workflows:
           # サービス名
           service-name: 'portfolio-service'
           # containerはタスク定義で設定したコンテナ名にする
-          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=rails,tag=latest"

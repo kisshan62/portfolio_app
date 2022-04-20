@@ -27,7 +27,7 @@ RUN bundle install
 ADD . $APP_ROOT
 
 # ログを削除
-# RUN rm -f $APP_ROOT/log/*
+RUN rm -f $APP_ROOT/log/*
 
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets

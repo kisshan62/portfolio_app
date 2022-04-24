@@ -27,7 +27,7 @@ RUN bundle install
 ADD . $APP_ROOT
 
 # ログを削除
-RUN rm -f $APP_ROOT/log/*
+# RUN rm -f $APP_ROOT/log/*
 
 # ログを作成
 RUN touch $APP_ROOT/log/puma.stdout.log

@@ -21,13 +21,16 @@ RUN bundle install
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . $APP_ROOT
 
+# ログを作成
+RUN touch $APP_ROOT/log/puma.stdout.log
+
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids
 
 # 以下の記述があることでnginxから見ることができる
-VOLUME /webapp/public
-VOLUME /webapp/tmp
+VOLUME $APP_ROOT/public
+VOLUME $APP_ROOT/tmp
 
 # production
 COPY entrypoint.sh /usr/bin/

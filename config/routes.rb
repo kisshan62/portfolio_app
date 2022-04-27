@@ -5,7 +5,6 @@ Rails.application.routes.draw do
       confirmations: 'users/confirmations'
     }
   devise_scope :user do
-    # root "devise/sessions#new"
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     put 'confirmation', to: 'users/confirmations#show', as: :back_confirmation
   end

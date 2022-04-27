@@ -1,13 +1,14 @@
 <div class="card">
   <div class="card-body">
-      <h4 class="card-title"><%= link_to goal.title, goal %>  <%= link_to goal.user.username, user_path(goal.user_id) %></h4>
-      <h6 class="card-subtitle"><%= start_day_state(goal) %>  <%= due_day_state(goal)%>  <%= goal_state(goal)%></h6>
-      <p class="card-text"><%= goal.description %></p>
-      <% if goal.steps.count > 0 %>
-        <div class="row row-cols-2">
-          <div class="col"><%= render partial: 'goals/step_each', collection: goal.steps, as: :step %></div>
-          <div class="col"><%= render partial: 'goals/step_button', collection: goal.steps, as: :step %></div>
-        </div>
+    <h5 class="card-title">タイトル：<%= link_to goal.title, goal %>
+      <% if !(current_user.id == goal.user_id) %>
+        　ユーザ：<%= link_to goal.user.username, user_path(goal.user_id) %>
       <% end %>
+    </h5>
+    <h6 class="card-subtitle"><%= start_day_state(goal) %>　<%= due_day_state(goal)%>　<%= goal_state(goal)%></h6>
+    <h3 class="card-text mt-2"><%= goal.description %></h3>
+    <% if goal.steps.count > 0 %>
+      <div class="col"><%= render partial: 'goals/step_each', collection: goal.steps, as: :step %></div>
+    <% end %>
   </div>
 </div>

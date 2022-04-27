@@ -4,8 +4,8 @@
     <div>目標を設定して達成しよう！</div>
   </div>
   <a class="btn btn-xl top-button btn-primary" href="#services">サイトについて</a>
-  <a class="btn btn-xl top-button btn-primary" href="#login">ログインする</a>
-  <a class="btn btn-xl top-button btn-primary" href="#signup">新規登録する</a>
+  <%= link_to "ログインする", new_user_session_path, class:"btn btn-xl top-button btn-primary" %>
+  <%= link_to "新規登録する", new_user_registration_path, class:"btn btn-xl top-button btn-primary" %>
 </header>
 
 <section id="services">
@@ -13,10 +13,10 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h2 class="section-heading">サイトについて</h2>
-        <h3 class="section-subheading text-muted">理想の自分に近づくための「目標」、大切な人との「約束」を叶えるための<br>。</h3>
+        <h3 class="section-subheading text-muted">理想の自分に近づくための「目標」を設定しよう。</h3>
       </div>
     </div>
-    <div class="row text-center">
+    <div class="row text-center mt-3">
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
           <i class="fa fa-circle fa-stack-2x text-primary"></i>
@@ -40,30 +40,6 @@
         </span>
         <h4 class="service-heading">設立経緯</h4>
         <p class="text-muted text-muted-des"><i class="fa fa-check fa-fw"></i>私自身の就職・転職活動時に、「スキルを身につけたい」という会社を選ぶ軸があったものの、それぞれの会社で働くことによって身につくスキルについて分からず、その情報についても集めることができなかった<br><i class="fa fa-check fa-fw"></i>1社で定年まで働くスタイルは過去のものとなりつつあり、今後は1人1人が自らのスキルを高めるために働く時代が来ると感じ、自分で1から作り、立ち上げた。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="login">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading text-uppercase">ログイン</h2>
-        <h3 class="section-subheading text-muted">ゲストユーザでログインも可能です。<br>ログインすると投稿・いいね！・コメントができます。</h3>
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-xl btn-outline-primary" %>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="signup">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading text-uppercase">無料会員登録</h2>
-        <h3 class="section-subheading text-muted">1分程度でできます。<br>登録すると投稿・いいね！・コメントができます。</h3>
-        <%= link_to "無料会員登録へ", new_user_registration_path, class: "btn btn-xl btn-outline-primary" %>
       </div>
     </div>
   </div>

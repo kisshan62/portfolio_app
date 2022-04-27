@@ -29,8 +29,8 @@ ADD . $APP_ROOT
 # ログを削除
 # RUN rm -f $APP_ROOT/log/*
 
-# ログを作成
-RUN mkdir $APP_ROOT/log/
+# ログディレクトリを作成
+RUN if [ ! -d $APP_ROOT/log ]; then mkdir $APP_ROOT/log/; fi
 
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets

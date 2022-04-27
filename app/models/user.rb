@@ -30,11 +30,20 @@ class User < ApplicationRecord
 
   # omniauthのコールバック時に呼ばれるメソッド
   def self.from_omniauth(auth)
-    find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      user.username = auth["info"]["nickname"]
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.provider = auth.provider,
+      user.uid = auth.uid,
+      user.username = auth.info.name,
+      user.password = Devise.friendly_token[0,20],
+      user.email = User.dummy_email(auth),
+      user.confirmed_at = Time.now
+      # binding.pry
     end
+  end
+
+  # ダミーのメールアドレスを作成
+  def self.dummy_email(auth)
+    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 
   def self.guest

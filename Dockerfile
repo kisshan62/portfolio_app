@@ -21,9 +21,6 @@ RUN bundle install
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 ADD . $APP_ROOT
 
-# ログを作成
-RUN touch $APP_ROOT/log/puma.stdout.log
-
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids

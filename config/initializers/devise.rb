@@ -309,10 +309,8 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  # config.omniauth :twitter, 'XQrOPgFDGrJifwAefhGLz05WR', 'EKVgwhM8DPHStvvRtVEaZYxIwyKxFOI5RfZjCuCfyuNU7ydL5F'
-  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
+  config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET'], oauth_callback: "#{ENV['DOMAIN_NAME']}/users/auth/twitter/callback"
 
-  # config.omniauth :google_oauth2, '199178294487-674op820c03t72d6g2gkb47gplbka35a.apps.googleusercontent.com', 'Cz6uY4hQ5d-lknDzkY3VMupj'
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
   
   OmniAuth.config.logger = Rails.logger if Rails.env.development?

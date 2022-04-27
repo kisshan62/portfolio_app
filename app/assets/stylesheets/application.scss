@@ -72,9 +72,6 @@
   box-sizing: border-box;
 }
 
-
-
-
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
@@ -11760,4 +11757,8 @@ header.masthead .masthead-heading {
 
 .img-brand {
   height: 2.75rem;
+}
+
+.profile .card {
+  width: 14rem;
 }

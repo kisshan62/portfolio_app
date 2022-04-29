@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2022_03_27_070337) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
-    t.string "username"
+    t.string "username", null: false
     t.text "profile"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

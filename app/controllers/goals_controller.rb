@@ -5,14 +5,14 @@ class GoalsController < ApplicationController
   
   def new
     @goal = Goal.new
-    @goal_steps = @goal.steps.build
+    @steps = @goal.steps.build
   end
 
   def create
     @goal = current_user.goals.build(goal_params)
     if @goal.save
       flash[:notice] = "Goal created!"
-      redirect_to root_path
+      redirect_to user_path(@goal.user_id)
     else
       flash.now[:alert] = "Goal failed create!"
       render :new
@@ -30,6 +30,7 @@ class GoalsController < ApplicationController
   
   def update
     @goal = Goal.find(params[:id])
+    # @step = @goal.steps.new
 
     if @goal.update(goal_params)
       redirect_to goal_path(@goal.id)
@@ -41,8 +42,7 @@ class GoalsController < ApplicationController
   def destroy
     @goal = Goal.find(params[:id])
     @goal.destroy
-
-    redirect_to root_path
+    redirect_to user_path(@goal.user_id)
   end
 
   def done
@@ -62,7 +62,7 @@ class GoalsController < ApplicationController
   private
 
     def goal_params
-      params.require(:goal).permit(:title, :description, :start_date, :due_date, :keyword,
-      steps_attributes: [:title, :description, :start_date, :due_date, :_destroy])
+      params.require(:goal).permit(:title, :description, :start_date, :due_date,
+      steps_attributes: [:id, :title, :description, :start_date, :due_date, :_destroy])
     end
 end

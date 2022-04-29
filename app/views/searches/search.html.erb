@@ -1,27 +1,32 @@
-<p>検索結果</p>
-<%= render "layouts/search_form" %>
+<div class="container">
+  <h1>検索結果</h1>
+  <%= render "layouts/search_form" %>
 
-<% if @range == "User" %>
-  <ul><% @users.each do |user| %>
-    <li>
-      <%= link_to user.username, user %>
-    </li>
-  </ul>
+  <% if @range == "User" %>
+    <% @users.each do |user| %>
+    <ul>
+      <li>
+        <%= link_to user.username, user %>
+      </li>
+    </ul>
+    <% end %>
+  <% elsif @range == "Goal" %>
+    <% @goals.each do |goal| %>
+    <ul>
+      <li>
+        <%= link_to goal.title, goal %>
+        <%= goal.created_at %>
+      </li>
+    </ul>
+    <% end %>
+  <% else %>
+    <% @comments.each do |comment| %>
+    <ul>
+      <li>
+        <%= link_to comment.goal.title, goal_path(comment.goal_id) %>
+        <%= comment.content %>
+      </li>
+    </ul>
+    <% end %>
   <% end %>
-<% elsif @range == "Goal" %>
-  <ul><% @goals.each do |goal| %>
-    <li>
-      <%= link_to goal.title, goal %>
-      <%= goal.created_at %>
-    </li>
-  </ul>
-  <% end %>
-<% else %>
-  <ul><% @comments.each do |comment| %>
-    <li>
-      <%= link_to comment.goal.title, goal_path(comment.goal_id) %>
-      <%= comment.content %>
-    </li>
-  </ul>
-  <% end %>
-<% end %>
+</div>

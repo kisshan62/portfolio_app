@@ -1,8 +1,8 @@
-<% provide(:title, "Goals#new") %>
+<% provide(:title, "目標新規作成") %>
 
 <div class="container">
   <h2>目標新規作成<h2>
   <div class="container">
-    <%= render 'goal_form' %>
+    <%= render 'goal_form', model: @goal %>
   </div>
 </div>

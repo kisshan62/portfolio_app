@@ -1,14 +1,10 @@
 class StepsController < ApplicationController
-  def new
-    @goal = Goal.find(params[:id])
-    @step = @goal.steps.build
-  end
 
   def destroy
     @step = Step.find(params[:id])
     @step.destroy
 
-    redirect_to goal_path
+    redirect_to goal_path(@step.goal_id)
   end
 
   def done

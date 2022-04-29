@@ -19,7 +19,9 @@
   <% end %>
   
   <%= render 'follow_stats' %>
-  <%= render 'follow_form' %>
+  <% unless current_user?(@user) %>
+    <%= render 'follow_form' %>
+  <% end %>
   <div class="profile">
     <div class="card mt-2">
       <%= @user.profile %>
@@ -27,7 +29,12 @@
   </div>
   <div class="mt-3">
     <% if current_user == @user %>
-      <%= link_to "新規投稿", new_goal_path, {class: "btn btn-large btn-primary-black"} %>
+      <% if guestuser? %>
+        <%= link_to "新規投稿", "#", {class: "btn btn-large btn-primary-black"} %>
+        <div><%= guestuser_phrase %> </div>
+      <% else %>
+        <%= link_to "新規投稿", new_goal_path, {class: "btn btn-large btn-primary-black"} %>
+      <% end %>
     <% end %>
   </div>
 </div>

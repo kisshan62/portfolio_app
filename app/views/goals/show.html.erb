@@ -9,9 +9,11 @@
     <%= render 'goal_button' %>
   <% end %>
 
-  <div class="mt-5">
-    <%= render 'comment_form' %>
-  </div>
+  <% if ! current_user == @goal.user_id %>
+    <div class="mt-5">
+      <%= render 'comment_form' %>
+    </div>
+  <% end %>
 
   <div class="mt-4">
     <h3>コメント一覧</h3>
@@ -34,4 +36,5 @@
       </tbody>
     </table>
   </div>
+  <%= render 'layouts/back' %>
 </div>

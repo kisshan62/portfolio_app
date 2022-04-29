@@ -32,7 +32,7 @@ module Webapp
     config.generators do |g|
       # 色々な記述があるので、一番下に追記する
       g.test_framework :rspec,
-                       fixtures: true,
+                       fixtures: false,
                        view_specs: false,
                        helper_specs: false,
                        routing_specs: false,

@@ -24,14 +24,14 @@
   </div>
 
   <div class="container mt-3">
-    <h3>小目標新規作成</h3>
+    <h3>小目標</h3>
     <div class="container">
       <%= f.fields_for :steps do |step| %>
         <%= render 'step_fields', f: step %>
       <% end %>
-      <%= link_to_add_association "小目標追加", f, :steps, class: 'btn btn-secondary mt-3' %>
+      <%= link_to_add_association "追加", f, :steps, class: 'btn btn-secondary mt-3', data: { association_insertion_method: 'append' } %>
     </div>
-    <div><%= f.submit name="投稿", class: "btn btn-primary mt-3" %></div>
-    <div><%= link_to "戻る", :back, { class: "btn btn-dark mt-3" } %></div>
   </div>
+  <%= f.submit name="投稿", class: "btn btn-primary-black mt-3" %>
+  <%= render 'layouts/back' %>
 <% end %>

@@ -8,13 +8,13 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     put 'confirmation', to: 'users/confirmations#show', as: :back_confirmation
   end
-  resources :users do
+  resources :users, only: [:show] do
     member do
-     get :following, :followers
+      get :following, :followers, :favorites
     end
   end
   resources :relationships, only: [:create, :destroy]
-  resources :goals do
+  resources :goals, only: [:new, :edit, :show, :update, :create,:destroy] do
     member do
       patch 'done', 'undone'
     end
@@ -23,8 +23,9 @@ Rails.application.routes.draw do
         patch 'done', 'undone'
       end
     end
+    resources :favorites, only: [:create, :destroy]
   end
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create]
   get 'search', to: 'searches#search'
   resources :notifications, only: :index
   root 'homes#index'

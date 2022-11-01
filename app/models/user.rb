@@ -8,12 +8,13 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :avatar
+  has_many :favorites, dependent: :destroy
   
   validates :username, presence: true, uniqueness: true
 
   # デフォルトの設定に、:omniauthable以下を追加
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable,:rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: %i[twitter google_oauth2]
 
   def following?(other_user)
@@ -50,6 +51,7 @@ class User < ApplicationRecord
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      user.username = "ゲストユーザ"
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
   end

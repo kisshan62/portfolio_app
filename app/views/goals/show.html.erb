@@ -1,40 +1,36 @@
-<% provide(:title, "Goals#show") %>
+<% provide(:title, "目標内容") %>
 
-<div class="container">
-  <h2><%= link_to @goal.user.username, user_path(@goal.user) %><h2>
-
-  <%= render partial:'goal_each', locals: { goal: @goal } %>
-
-  <% if current_user == @goal.user %>
-    <%= render 'goal_button' %>
-  <% end %>
-
-  <% if ! current_user == @goal.user_id %>
-    <div class="mt-5">
-      <%= render 'comment_form' %>
+<div>
+  <div class="toukou">
+    <h2 class="title">ユーザ名：<%= link_to @goal.user.username, user_path(@goal.user) %><h2>
+    <div class="container mt-3">
+      <%= render partial:'goal_each', locals: { goal: @goal } %>
+      <%# <% if current_user.id == @goal.user_id %>
+        <%# <%= render 'goal_button' %>
+      <%# <% end %>
     </div>
-  <% end %>
-
-  <div class="mt-4">
-    <h3>コメント一覧</h3>
-    <table class="table mt-3 small">
-      <thead>
-        <tr>
-          <th>ユーザ名</th>
-          <th>内容</th>
-          <th colspan="5"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td><%= link_to comment.user.username, user_path(comment.user_id) %></td>
-            <td><%= comment.content %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'comment_form' %>
+    <div class="mt-4 toukou">
+      <h3>コメント一覧</h3>
+      <div class="container">
+        <table class="table mt-3 small">
+          <thead>
+            <tr>
+              <th width="20%">ユーザ名</th>
+              <th width="80%">コメント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @comments.each do |comment| %>
+              <tr>
+                <td><%= link_to comment.user.username, user_path(comment.user_id) %></td>
+                <td><%= comment.content %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= render 'layouts/back' %>
+      </div>
+    </div>
   </div>
-  <%= render 'layouts/back' %>
 </div>

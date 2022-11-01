@@ -1,0 +1,11 @@
+<div id=favorite %>
+  <% if goal.favorites.count == 0 %>
+    <%= link_to goal_favorites_path(goal), method: :post, class: "favorite-btn favorite-goal" do %>
+      <i class="far fa-star"></i><%= goal.favorites.length %>
+    <% end %>
+  <% else %>
+    <%= link_to goal_favorite_path(goal), method: :delete, class: "favorite-btn favorite-delete" do %>
+      <i class="fas fa-star"></i><%= goal.favorites.length %>
+    <% end %>
+  <% end %>
+</div>

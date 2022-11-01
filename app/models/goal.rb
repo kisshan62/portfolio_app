@@ -5,6 +5,7 @@ class Goal < ApplicationRecord
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   accepts_nested_attributes_for :steps, allow_destroy: true
 
   def self.search(keyword, search_pattern)

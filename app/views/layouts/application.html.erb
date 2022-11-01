@@ -14,12 +14,11 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <%# <div class="container mt-3"> %>
-      <%# <h1><%= full_title yield(:title) %></h1>
-    <%# </div> %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
+    <% if notice %>
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+    <% end %>
+
     <%= yield %>
     
     <div class="debug-param small mt-5">

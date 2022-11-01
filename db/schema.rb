@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_27_070337) do
+ActiveRecord::Schema.define(version: 2022_10_31_112310) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2022_03_27_070337) do
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_comments_on_goal_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "goal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_favorites_on_goal_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -117,6 +126,8 @@ ActiveRecord::Schema.define(version: 2022_03_27_070337) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "goals"
+  add_foreign_key "favorites", "users"
   add_foreign_key "goals", "users"
   add_foreign_key "steps", "goals"
 end

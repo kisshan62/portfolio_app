@@ -1,8 +1,9 @@
 <%= form_with scope: :search, url: search_path, method: :get, local: true do |f| %>
   <div class=search_field>
-    <%= f.select :range, options_for_select([['User'], ['Goal'], ['Comment']]) %>
-    <%= f.select :search_pattern, options_for_select([["and","and_match"], ["or","or_match"]]) %>
+    <%= f.select :range, options_for_select([['ユーザ','User'], ['目標','Goal'], ['コメント','Comment']]) %>
+    <%= f.select :search_pattern, options_for_select([["and条件","and_match"], ["or条件","or_match"]]) %>
     <%= f.text_field :keyword %>
-    <%= f.submit "search" %>
+    <%= f.submit "検索" %>
   </div>
 <% end %>
+<div class="white">条件は半角または全角スペース区切りで入力できます。</div>

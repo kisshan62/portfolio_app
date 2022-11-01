@@ -1,13 +1,15 @@
 <div class="card">
   <div class="card-body">
-      <h6 class="card-title">タイトル：<%= step.title %></h6>
-      <h6 class="card-subtitle"><%= start_day_state(step) %>　<%= due_day_state(step)%>　<%= goal_state(step)%></h6>
-      <h4 class="card-text mt-2"><%= step.description %> </h4>
+    <h6 class="card-title">タイトル：<%= step.title %></h6>
+    <h6 class="card-subtitle"><%= start_day_state(step) %>　<%= due_day_state(step)%>　<%= goal_state(step)%></h6>
+    <h4 class="card-text mt-2"><%= step.description %> </h4>
+    <% if current_user.id == Goal.find(step.goal_id).user_id %>
       <%= link_to "削除", goal_step_path(step.goal_id, step), method: :delete, class: "btn btn-large btn-primary-black" %>
-      <% if step.done == false %>  
+      <% if step.done == false %>
         <%= link_to "完了", done_goal_step_path(step.goal_id, step), method: :patch, class: "btn btn-large btn-primary-black" %>
       <% else %>
         <%= link_to "未完了", undone_goal_step_path(step.goal_id, step), method: :patch, class: "btn btn-large btn-primary-black" %>
       <% end %>
+    <% end %>
   </div>
 </div>

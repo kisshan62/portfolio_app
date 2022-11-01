@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card border-dark mt-3">
   <div class="card-body">
     <h5 class="card-title">タイトル：<%= link_to goal.title, goal %>
       <% if !(current_user.id == goal.user_id) %>
@@ -7,8 +7,16 @@
     </h5>
     <h6 class="card-subtitle"><%= start_day_state(goal) %>　<%= due_day_state(goal)%>　<%= goal_state(goal)%></h6>
     <h3 class="card-text mt-2"><%= goal.description %></h3>
-    <% if goal.steps.count > 0 %>
+    <% if goal.steps %>
       <div class="col"><%= render partial: 'goals/step_each', collection: goal.steps, as: :step %></div>
     <% end %>
+    <% if !(current_user.id == goal.user_id) %>
+      <%= render partial:'favorites/favorite', locals: { goal: goal } %>
+    <% end %>
   </div>
+    <% if @goal %>
+      <% if current_user.id == @goal.user_id %>
+        <%= render 'goal_button' %>
+      <% end %>
+    <% end %>
 </div>

@@ -10,12 +10,12 @@
             <%= link_to "未完了", "#", class: "btn btn-large btn-primary-black"  %>
         <% end %>
       </div>
-      <div ><%= guestuser_phrase %></div>
+      <div class="guestuser_phrase"><%= guestuser_phrase %></div>
     <% else %>
       <div class="col-md-1"><%= link_to "編集", edit_goal_path(@goal), {class: "btn btn-large btn-primary-black"} %></div>
       <div class="col-md-1"><%= link_to "削除", goal_path(@goal), method: :delete, class: "btn btn-large btn-primary-black" %></div>
       <div class="col-md-1">
-        <% if @goal.done == false %>  
+        <% if @goal.done == false %>
             <%= link_to "完了", done_goal_path(@goal), method: :patch, class: "btn btn-large btn-primary-black" %>
         <% else %>
             <%= link_to "未完了", undone_goal_path(@goal), method: :patch, class: "btn btn-large btn-primary-black"  %>

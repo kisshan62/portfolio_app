@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     @user.followings.each do |f|
       @following_goals = @following_goals.or(Goal.where(user_id: "#{f.id}"))
     end
+    # favorites = Favorite.where(user_id: current_user.id).pluck(:goal_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
+    # @favorite_list = Goal.find(favorites)     # postsテーブルから、お気に入り登録済みのレコードを取得
+    # @goals_all = Goal.all
   end
 
   def following

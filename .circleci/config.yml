@@ -32,7 +32,8 @@ workflows:
           # ECSのタスク定義名
           family: 'portfolio-task-def'
           # ECSのクラスター名かARNのフルパス
-          cluster-name: 'portfoli-cluster'
+          #cluster-name: 'portfoli-cluster'
+          cluster: 'portfoli-cluster'
           # サービス名
           service-name: 'portfolio-service'
           # containerはタスク定義で設定したコンテナ名にする

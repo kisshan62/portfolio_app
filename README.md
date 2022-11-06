@@ -14,6 +14,12 @@ https://goalme.net
 
 画像挿入
 
+## 開発環境
+・Windows10
+・Docker-Desktop4.4.4
+・VSCode
+
+
 ## 使用技術
 
 ・MySQL
@@ -23,8 +29,7 @@ https://goalme.net
 ・CircleCi（テスト・デプロイ）
 ・RSpec（テストフレームワーク）
 ・Docker,Docker-compose（開発環境）
-・AWS/本番環境（EC2, RDS, VPC, EIP, Route53, IAM, S3）
-・Mac Catalina(10.15.5)
+・AWS/本番環境（ECR, ECS, RDS, VPC, EIP, Route53, IAM）
 ・Amazon Linux
 ・VSCode, Vim
 

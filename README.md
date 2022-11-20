@@ -4,7 +4,7 @@ https://goalme.net
 
 ゲストログイン機能がありますので、ログイン画面の「ゲストログイン（閲覧用）」ボタンから閲覧できます。
 
-画像挿入
+![guest_login](https://user-images.githubusercontent.com/60570329/202889327-45570040-2625-44e8-af00-97c7e8296a8d.gif)
 
 ## サイト概要
 
@@ -13,7 +13,11 @@ https://goalme.net
 ユーザをフォローすることでそのユーザの投稿が画面に表示され、コメント、いいねをすることで応援することができる。
 目標達成後は完了とすることで未達成のものと区別が可能。
 
-![guest_login](https://user-images.githubusercontent.com/60570329/202889327-45570040-2625-44e8-af00-97c7e8296a8d.gif)
+サイトトップ画面
+![top](https://user-images.githubusercontent.com/60570329/202890190-ccb7b5e0-7e82-4344-b053-9990d8abd931.png)
+
+ユーザトップ画面
+![user_top](https://user-images.githubusercontent.com/60570329/202890200-b00827c4-8096-4a52-8e2e-4fd3b7661d11.gif)
 
 
 ## 開発環境
@@ -35,6 +39,7 @@ https://goalme.net
 ・AWS/本番環境（ECR, ECS, RDS, VPC, EIP, Route53, IAM）  
 ・VSCode, Vim  
 
+インフラ構成
 ![system_configuration](https://user-images.githubusercontent.com/60570329/202889335-4a475946-5d14-45b1-8ecc-ff8d2216b7b6.png)
 
 
